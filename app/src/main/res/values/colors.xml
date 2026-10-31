@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ground">#1B2CC1</color>
+    <color name="ink">#0A0F3D</color>
+    <color name="soft">#D9DDFF</color>
+    <color name="softer">#C5CBFA</color>
+    <color name="sun">#FFC933</color>
+    <color name="sun_shadow">#C9951A</color>
+    <color name="coral">#FF6B5B</color>
+    <color name="mint">#3DE0B0</color>
+    <color name="lilac">#B9A6FF</color>
+    <color name="tile_shadow">#470A0F3D</color>
+    <color name="box_front">#0E1A8C</color>
+    <color name="box_flap">#2639D6</color>
+    <color name="box_rim">#0B1466</color>
+    <color name="ghost_outline">#73FFFFFF</color>
+    <color name="track">#29FFFFFF</color>
+</resources>

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:fitsSystemWindows="true">
+
+        <!-- Home -->
+        <LinearLayout
+            android:id="@+id/screen_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_mark" />
+
+                <TextView
+                    style="@style/Text.Display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/wordmark"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/hero_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:layout_marginTop="32dp"
+                android:clipChildren="false"
+                android:importantForAccessibility="noHideDescendants">
+
+                <FrameLayout
+                    android:id="@+id/hero"
+                    android:layout_width="342dp"
+                    android:layout_height="360dp"
+                    android:clipChildren="false">
+
+                    <com.peter.unapker.BoxFlapsView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/tile_xapk"
+                        style="@style/Text.Tile"
+                        android:layout_width="168dp"
+                        android:layout_height="88dp"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="18dp"
+                        android:text=".xapk" />
+
+                    <TextView
+                        android:id="@+id/tile_apks"
+                        style="@style/Text.Tile"
+                        android:layout_width="156dp"
+                        android:layout_height="88dp"
+                        android:layout_marginStart="168dp"
+                        android:layout_marginTop="56dp"
+                        android:text=".apks" />
+
+                    <TextView
+                        android:id="@+id/tile_apkm"
+                        style="@style/Text.Tile"
+                        android:layout_width="160dp"
+                        android:layout_height="88dp"
+                        android:layout_marginStart="58dp"
+                        android:layout_marginTop="128dp"
+                        android:text=".apkm" />
+
+                    <TextView
+                        android:id="@+id/tile_apk"
+                        style="@style/Text.Tile"
+                        android:layout_width="112dp"
+                        android:layout_height="80dp"
+                        android:layout_marginStart="196dp"
+                        android:layout_marginTop="160dp"
+                        android:paddingStart="20dp"
+                        android:text=".apk"
+                        android:textSize="22sp" />
+
+                    <FrameLayout
+                        android:layout_width="202dp"
+                        android:layout_height="92dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="262dp"
+                        android:background="@drawable/box_front">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_box_mark" />
+                    </FrameLayout>
+                </FrameLayout>
+            </FrameLayout>
+
+            <TextView
+                style="@style/Text.Display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:accessibilityHeading="true"
+                android:text="@string/home_title" />
+
+            <TextView
+                style="@style/Text.Soft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/home_body" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/choose"
+                style="@style/Button.Sun"
+                android:text="@string/choose_file" />
+        </LinearLayout>
+
+        <!-- Installing -->
+        <LinearLayout
+            android:id="@+id/screen_installing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/work_icon"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/work_name"
+                        style="@style/Text.Display"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/work_version"
+                        style="@style/Text.Soft"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/work_stage"
+                    style="@style/Text.Soft"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontVariationSettings="'wght' 600"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/work_count"
+                    style="@style/Text.Soft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontVariationSettings="'wght' 600"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/work_percent"
+                style="@style/Text.Display"
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:autoSizeMaxTextSize="108sp"
+                android:autoSizeMinTextSize="48sp"
+                android:autoSizeTextType="uniform"
+                android:gravity="bottom|start"
+                android:letterSpacing="-0.03"
+                android:maxLines="1" />
+
+            <com.peter.unapker.BarView
+                android:id="@+id/work_bar"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="14dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:id="@+id/work_stack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipChildren="false"
+                    android:gravity="bottom"
+                    android:orientation="vertical" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/work_skipped"
+                style="@style/Text.Soft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:textColor="@color/softer"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/work_action"
+                style="@style/Button.Sun"
+                android:layout_marginTop="18dp"
+                android:text="@string/allow_installs"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- After the user confirms -->
+        <LinearLayout
+            android:id="@+id/screen_finishing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <FrameLayout
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:clipChildren="false">
+
+                <View
+                    android:id="@+id/finish_halo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="24dp"
+                    android:background="@drawable/halo" />
+
+                <com.peter.unapker.RingView
+                    android:id="@+id/finish_ring"
+                    android:layout_width="224dp"
+                    android:layout_height="224dp"
+                    android:layout_gravity="center" />
+
+                <View android:id="@+id/gather_1" android:layout_width="120dp" android:layout_height="52dp" android:layout_gravity="center" />
+                <View android:id="@+id/gather_2" android:layout_width="120dp" android:layout_height="52dp" android:layout_gravity="center" />
+                <View android:id="@+id/gather_3" android:layout_width="120dp" android:layout_height="52dp" android:layout_gravity="center" />
+                <View android:id="@+id/gather_4" android:layout_width="100dp" android:layout_height="52dp" android:layout_gravity="center" />
+
+                <FrameLayout
+                    android:id="@+id/finish_icon"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.Display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:accessibilityHeading="true"
+                    android:text="@string/installing"
+                    android:textSize="38sp" />
+
+                <TextView android:id="@+id/dot_1" style="@style/Text.Display" android:layout_width="wrap_content" android:layout_height="wrap_content" android:importantForAccessibility="no" android:text="." android:textSize="38sp" />
+                <TextView android:id="@+id/dot_2" style="@style/Text.Display" android:layout_width="wrap_content" android:layout_height="wrap_content" android:importantForAccessibility="no" android:text="." android:textSize="38sp" />
+                <TextView android:id="@+id/dot_3" style="@style/Text.Display" android:layout_width="wrap_content" android:layout_height="wrap_content" android:importantForAccessibility="no" android:text="." android:textSize="38sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/finish_body"
+                style="@style/Text.Soft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.3" />
+        </LinearLayout>
+
+        <!-- Installed -->
+        <LinearLayout
+            android:id="@+id/screen_installed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <FrameLayout
+                android:id="@+id/done_stage"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:clipChildren="false">
+
+                <FrameLayout
+                    android:id="@+id/done_pop"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center"
+                    android:clipChildren="false">
+
+                    <FrameLayout
+                        android:id="@+id/done_icon"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center" />
+
+                    <FrameLayout
+                        android:id="@+id/done_badge"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="bottom|end"
+                        android:background="@drawable/badge">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_check" />
+                    </FrameLayout>
+                </FrameLayout>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/done_title"
+                style="@style/Text.Display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:accessibilityHeading="true"
+                android:text="@string/installed"
+                android:textSize="46sp" />
+
+            <TextView
+                android:id="@+id/done_body"
+                style="@style/Text.Soft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.3" />
+
+            <LinearLayout
+                android:id="@+id/done_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/done_open"
+                    style="@style/Button.Sun" />
+
+                <Button
+                    android:id="@+id/done_close"
+                    style="@style/Button.Ghost"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/done" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Failed or locked -->
+        <LinearLayout
+            android:id="@+id/screen_failed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <FrameLayout
+                android:id="@+id/fail_tile"
+                android:layout_width="140dp"
+                android:layout_height="152dp">
+
+                <ImageView
+                    android:id="@+id/fail_glyph"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:importantForAccessibility="no" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/fail_title"
+                style="@style/Text.Display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:accessibilityHeading="true"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/fail_body"
+                style="@style/Text.Soft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.3" />
+
+            <Button
+                android:id="@+id/fail_close"
+                style="@style/Button.Ghost"
+                android:text="@string/close" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

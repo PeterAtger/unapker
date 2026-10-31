@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Unapker</string>
+    <string name="wordmark">unapker</string>
+    <string name="home_title">Open a bundle.</string>
+    <string name="home_body">Tap any .xapk, .apks or .apkm and it installs.</string>
+    <string name="choose_file">Choose a file</string>
+
+    <string name="opening">Opening</string>
+    <string name="preparing">Preparing</string>
+    <string name="waiting_for_you">Waiting for you</string>
+    <string name="allow_installs">Allow installs</string>
+    <string name="version">Version %1$s</string>
+    <string name="percent">%1$d%%</string>
+    <plurals name="parts">
+        <item quantity="one">1 part</item>
+        <item quantity="other">%d parts</item>
+    </plurals>
+    <plurals name="skipped">
+        <item quantity="one">1 part for other phones skipped</item>
+        <item quantity="other">%d parts for other phones skipped</item>
+    </plurals>
+    <plurals name="more_parts">
+        <item quantity="one">1 more part</item>
+        <item quantity="other">%d more parts</item>
+    </plurals>
+    <string name="part_main">Main app</string>
+    <string name="part_processor">Processor support</string>
+    <string name="part_screen">Screen size</string>
+
+    <string name="installing">Installing</string>
+    <string name="putting_together">Putting %1$s together</string>
+
+    <string name="installed">Installed!</string>
+    <string name="installed_ready">%1$s is ready.</string>
+    <string name="installed_move_obb">Move %1$s into Android/obb before opening.</string>
+    <string name="open_app">Open %1$s</string>
+    <string name="done">Done</string>
+
+    <string name="locked_title">It’s locked.</string>
+    <string name="locked_body">Only APKMirror Installer can open this .apkm.</string>
+    <string name="not_package_title">Not an app.</string>
+    <string name="not_package_body">This file isn’t an .xapk, .apks, .apkm or .apk.</string>
+    <string name="failed_title">Couldn’t install.</string>
+    <string name="cancelled_title">Cancelled.</string>
+    <string name="cancelled_body">Nothing was installed.</string>
+    <string name="failed_incompatible">This app doesn’t work on this phone.</string>
+    <string name="failed_storage">Not enough space on this phone.</string>
+    <string name="failed_conflict">A different version is already installed. Uninstall it first.</string>
+    <string name="failed_generic">Android stopped the install.</string>
+    <string name="close">Close</string>
+</resources>
