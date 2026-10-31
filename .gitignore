@@ -4,3 +4,6 @@ local.properties
 *.iml
 .idea/
 .kotlin/
+upload-keystore.jks
+keystore.properties
+*.aab
