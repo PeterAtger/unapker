@@ -8,7 +8,7 @@ class InstallJob(val zip: ZipFile, val bundle: SplitBundle, val source: File, pr
     fun clear() {
         runCatching { zip.close() }
         source.delete()
-        preview.delete()
+        preview.deleteRecursively()
     }
 }
 

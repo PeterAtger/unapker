@@ -173,7 +173,7 @@ class MainActivity : Activity() {
         val fileName = displayNameOf(uri)
         val stamp = System.nanoTime()
         val source = File(cacheDir, "source-$stamp.apk")
-        val previewApk = File(cacheDir, "preview-$stamp.apk")
+        val previewApk = File(cacheDir, "preview-$stamp")
         showOpening(fileName)
         worker.execute {
             try {
@@ -197,7 +197,7 @@ class MainActivity : Activity() {
                 }
             } catch (e: Exception) {
                 source.delete()
-                previewApk.delete()
+                previewApk.deleteRecursively()
                 runOnUiThread { showFailure(e) }
             }
         }
@@ -325,14 +325,19 @@ class MainActivity : Activity() {
     private fun fitHero() {
         val wrap = findViewById<FrameLayout>(R.id.hero_wrap)
         val hero = findViewById<View>(R.id.hero)
-        wrap.post {
+        // Home is GONE (zero-sized) when the app opens straight onto a file, so wait for a real layout.
+        wrap.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+            if (wrap.width == 0 || hero.width == 0) return@addOnLayoutChangeListener
             val scale = minOf(1f, wrap.width.toFloat() / hero.width)
             hero.pivotX = 0f
             hero.pivotY = 0f
             hero.scaleX = scale
             hero.scaleY = scale
             hero.translationX = (wrap.width - hero.width * scale) / 2
-            wrap.layoutParams = wrap.layoutParams.apply { height = (hero.height * scale).toInt() }
+            val height = (hero.height * scale).toInt()
+            if (wrap.layoutParams.height != height) {
+                wrap.post { wrap.layoutParams = wrap.layoutParams.apply { this.height = height } }
+            }
         }
     }
 
