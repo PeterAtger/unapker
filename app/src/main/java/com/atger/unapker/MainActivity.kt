@@ -3,6 +3,7 @@ package com.atger.unapker
 import android.Manifest
 import android.animation.Animator
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageInstaller
 import android.content.pm.PackageManager
@@ -68,6 +69,11 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        chooserForUnrelatedFile(intent)?.let {
+            passOn(it)
+            finish()
+            return
+        }
         setContentView(R.layout.activity_main)
         findViewById<View>(R.id.root).background = MatDrawable(this)
 
@@ -100,6 +106,10 @@ class MainActivity : Activity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        chooserForUnrelatedFile(intent)?.let {
+            passOn(it)
+            return
+        }
         setIntent(intent)
         handle(intent)
     }
@@ -137,6 +147,45 @@ class MainActivity : Activity() {
         if (requestCode == STORAGE_PERMISSION) {
             copyObbs()
         }
+    }
+
+    // The My Files catch-all also matches files that do have a type (e.g. .docx). Hand those to the
+    // system chooser without us in it, so Unapker only ever handles files My Files couldn't type.
+    private fun chooserForUnrelatedFile(intent: Intent): Intent? {
+        val catchAll = ComponentName(packageName, "$packageName.OpenAnyFile")
+        val type = intent.type
+        val uri = intent.data
+        if (intent.component != catchAll || uri == null || type.isNullOrEmpty() || type in BUNDLE_TYPES) {
+            return null
+        }
+        val view = Intent(Intent.ACTION_VIEW)
+            .setDataAndType(uri, type)
+            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        return Intent.createChooser(view, null)
+            .putExtra(Intent.EXTRA_EXCLUDE_COMPONENTS, arrayOf(catchAll, ComponentName(this, MainActivity::class.java)))
+            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    }
+
+    // Forwarding read access fails if we were never granted it, so retry without asking to share it.
+    private fun passOn(chooser: Intent) {
+        try {
+            startActivity(chooser)
+        } catch (e: SecurityException) {
+            chooser.flags = chooser.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION.inv()
+            chooser.getParcelableExtraCompat(Intent.EXTRA_INTENT)?.let {
+                it.flags = it.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION.inv()
+                chooser.putExtra(Intent.EXTRA_INTENT, it)
+            }
+            runCatching { startActivity(chooser) }
+        }
+    }
+
+    private fun Intent.getParcelableExtraCompat(name: String): Intent? {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return getParcelableExtra(name, Intent::class.java)
+        }
+        @Suppress("DEPRECATION")
+        return getParcelableExtra(name)
     }
 
     private fun handle(intent: Intent) {
@@ -587,6 +636,17 @@ class MainActivity : Activity() {
         private const val STORAGE_PERMISSION = 2
         private const val NO_SESSION = -1
         private const val MAX_TILES = 4
+        private val BUNDLE_TYPES = setOf(
+            "application/xapk-package-archive",
+            "application/vnd.apkm",
+            "application/vnd.apks",
+            "application/x-apks",
+            "application/x-xapk",
+            "application/vnd.android.package-archive",
+            "application/octet-stream",
+            "application/zip",
+            "application/x-zip-compressed",
+        )
         private const val COMMIT_PAUSE_MS = 1200L
         private const val CONFETTI = "confetti"
         private val TILE_TILTS = floatArrayOf(-1.5f, 1.5f, -1f, 2f)
